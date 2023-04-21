@@ -7,12 +7,15 @@ This library includes a single, simple component to use for spritesheet animatio
 ### How to use
 
 There is an example in App.jsx in this repo, but the code is simple to implement. First, import the component
+
 `import SpriteAnimator from "@bdub/react-sprite-animator";`
 
 Then, import your sprite sheet
+
 `import  IdleSheet  from  "./assets/idle_sheet.png";`
 
 Lastly, use the component
+
 `<SpriteAnimator sheet={IdleSheet} columns={16} />`
 
 ***
