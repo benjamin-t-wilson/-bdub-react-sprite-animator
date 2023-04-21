@@ -1,7 +1,7 @@
 import "./App.css";
 import SpriteAnimator from "./lib/components/SpriteAnimator";
 
-import IdleSheet from "./local/idle_sheet.png";
+import IdleSheet from "./assets/idle_sheet.png";
 
 function App() {
   return (
