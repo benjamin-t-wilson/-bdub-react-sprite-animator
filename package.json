@@ -1,7 +1,7 @@
 {
   "name": "@bdub/react-sprite-animator",
   "description": "A simple sprite sheet animator component for React",
-  "authot": "bdubstudio",
+  "author": "bdubstudio",
   "keywords": [
     "react",
     "sprite",
