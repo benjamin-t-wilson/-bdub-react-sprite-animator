@@ -13,23 +13,18 @@ const SpriteAnimator = _ref => {
   let {
     sheet,
     columns,
+    size,
     fps = 16,
     play = true
   } = _ref;
   const imgRef = (0, _react.useRef)(null);
-  const [imgDimensions, setImgDimensions] = (0, _react.useState)({
-    height: 0,
-    width: 0
-  });
+  const [imgWidth, setImgWidth] = (0, _react.useState)(0);
   const [spriteIndex, setSpriteIndex] = (0, _react.useState)(0);
   (0, _react.useEffect)(() => {
-    if (imgRef.current && imgDimensions.height == 0) {
-      const newDims = {};
-      newDims.height = imgRef.current.naturalHeight;
-      newDims.width = imgRef.current.naturalWidth;
-      setImgDimensions(_ => newDims);
+    if (imgRef.current && imgWidth == 0) {
+      setImgWidth(_ => size * columns);
     }
-  }, [imgRef, imgDimensions]);
+  }, [imgRef, imgWidth]);
   (0, _react.useEffect)(() => {
     if (play) {
       if (spriteIndex < columns - 1) {
@@ -48,8 +43,8 @@ const SpriteAnimator = _ref => {
   return /*#__PURE__*/_react.default.createElement("section", {
     className: "sprite-animator",
     style: {
-      width: imgDimensions.width / columns,
-      height: imgDimensions.height,
+      height: size,
+      width: imgWidth / columns,
       overflow: "hidden"
     }
   }, /*#__PURE__*/_react.default.createElement("img", {
@@ -57,7 +52,9 @@ const SpriteAnimator = _ref => {
     src: sheet,
     style: {
       position: "relative",
-      right: spriteIndex * imgDimensions.width / columns
+      right: spriteIndex * imgWidth / columns,
+      height: size,
+      width: imgWidth
     }
   }));
 };
