@@ -6,7 +6,7 @@ import IdleSheet from "./assets/idle_sheet.png";
 function App() {
   return (
     <div className="App">
-      <SpriteAnimator sheet={IdleSheet} columns={16} />
+      <SpriteAnimator sheet={IdleSheet} columns={16} size={32} />
     </div>
   );
 }

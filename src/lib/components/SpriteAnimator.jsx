@@ -1,18 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const SpriteAnimator = ({ sheet, columns, fps = 16, play = true }) => {
+const SpriteAnimator = ({ sheet, columns, size, fps = 16, play = true }) => {
   const imgRef = useRef(null);
-  const [imgDimensions, setImgDimensions] = useState({ height: 0, width: 0 });
+  const [imgWidth, setImgWidth] = useState(0);
   const [spriteIndex, setSpriteIndex] = useState(0);
 
   useEffect(() => {
-    if (imgRef.current && imgDimensions.height == 0) {
-      const newDims = {};
-      newDims.height = imgRef.current.naturalHeight;
-      newDims.width = imgRef.current.naturalWidth;
-      setImgDimensions((_) => newDims);
+    if (imgRef.current && imgWidth == 0) {
+      setImgWidth((_) => size * columns);
     }
-  }, [imgRef, imgDimensions]);
+  }, [imgRef, imgWidth]);
 
   useEffect(() => {
     if (play) {
@@ -34,8 +31,8 @@ const SpriteAnimator = ({ sheet, columns, fps = 16, play = true }) => {
     <section
       className="sprite-animator"
       style={{
-        width: imgDimensions.width / columns,
-        height: imgDimensions.height,
+        height: size,
+        width: imgWidth / columns,
         overflow: "hidden",
       }}
     >
@@ -44,7 +41,9 @@ const SpriteAnimator = ({ sheet, columns, fps = 16, play = true }) => {
         src={sheet}
         style={{
           position: "relative",
-          right: (spriteIndex * imgDimensions.width) / columns,
+          right: (spriteIndex * imgWidth) / columns,
+          height: size,
+          width: imgWidth,
         }}
       />
     </section>
